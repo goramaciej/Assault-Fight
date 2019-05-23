@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour {
     // Start is called before the first frame update
 
     [Header("Screen movement")]
-    [Tooltip("In m")] [SerializeField] float xRange = 12f;
-    [Tooltip("In m")] [SerializeField] float yRange = 9f;
+    [Tooltip("In m")] [SerializeField] float xRange = 16f;
+    [Tooltip("In m")] [SerializeField] float yRange = 12f;
 
 
     [Tooltip("In meters^-1")] [SerializeField] float xSpeed = 35f;

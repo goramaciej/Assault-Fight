@@ -511,8 +511,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 35
+  far clip plane: 400
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circuit: {fileID: 719844277}
-  lookAheadForTargetOffset: 5
+  lookAheadForTargetOffset: 4
   lookAheadForTargetFactor: 0.1
   lookAheadForSpeedOffset: 10
   lookAheadForSpeedFactor: 0.2
@@ -796,7 +796,7 @@ PrefabInstance:
     - target: {fileID: 1294936981900232810, guid: 08d888dda3f2e2542955b586d74ffafb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1294936981900232810, guid: 08d888dda3f2e2542955b586d74ffafb,
         type: 3}
@@ -837,6 +837,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284986955642086601, guid: 08d888dda3f2e2542955b586d74ffafb,
+        type: 3}
+      propertyPath: xRange
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284986955642086601, guid: 08d888dda3f2e2542955b586d74ffafb,
+        type: 3}
+      propertyPath: yRange
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08d888dda3f2e2542955b586d74ffafb, type: 3}
