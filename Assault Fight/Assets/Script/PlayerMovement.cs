@@ -8,12 +8,11 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Screen movement")]
     [Tooltip("In m")] [SerializeField] float xRange = 16f;
-    [Tooltip("In m")] [SerializeField] float yRange = 12f;
+    [Tooltip("In m")] [SerializeField] float yRange = 8f;
 
 
     [Tooltip("In meters^-1")] [SerializeField] float xSpeed = 35f;
     [Tooltip("In meters^-1")] [SerializeField] float ySpeed = 20f;
-
 
     [Header("Rotation")]
     [SerializeField] float rotateXFactor = 9f;
