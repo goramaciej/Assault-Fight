@@ -10,11 +10,10 @@ public class LoadSceneDelayed : MonoBehaviour
     {
 
         //Debug.Log("Start invoke method");
-        ///Invoke("ShowLevel1", 5);
+        Invoke("ShowLevel1", 5);
     }
-    public void ShowLevel1() {
+    private void ShowLevel1() {
         //Debug.Log("It's time to show the next level");
         SceneManager.LoadScene(1);
-        Debug.Log("Start the game...");
     }
 }

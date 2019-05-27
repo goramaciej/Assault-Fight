@@ -17,17 +17,7 @@ public class PlayerCollision : MonoBehaviour {
         SetExplosion();
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Player has got collision: "+ collision.gameObject);
-    }
-
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Player has triggered: " + other.gameObject);
-        /*RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit)) {
-            Debug.Log("Point of contact: " + hit.point);
-        }*/
-
         //Debug.Log(other.gameObject);
         //Die();
         Damage();

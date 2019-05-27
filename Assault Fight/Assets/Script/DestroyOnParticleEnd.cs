@@ -16,7 +16,7 @@ public class DestroyOnParticleEnd : MonoBehaviour
     {
         if (particle) {
             if (!particle.IsAlive()) {
-                //Debug.Log("Destroy particle");
+                Debug.Log("Destroy particle");
                 Destroy(gameObject);
             }
         }

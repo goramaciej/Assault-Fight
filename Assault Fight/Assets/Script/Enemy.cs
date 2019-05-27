@@ -6,25 +6,23 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
     [SerializeField] Transform xplosionParent;
-    [SerializeField] int scoreForKill = 12;
 
     private Collider boxCollider;
-    private ScoreBoard scoreBoard;
 
     void Start()
     {
         AddCollider();
-        scoreBoard = FindObjectOfType<ScoreBoard>();
-        scoreBoard.AddScore(scoreForKill);
     }
 
     private void AddCollider() {
         boxCollider = gameObject.GetComponent<BoxCollider>();
 
         if (!boxCollider) {
+            Debug.Log("No collider... add it");
             boxCollider = gameObject.AddComponent<BoxCollider>();            
         }
         boxCollider.isTrigger = false;
+        Debug.Log("Added: "+ boxCollider);
     }
 
     // Update is called once per frame
