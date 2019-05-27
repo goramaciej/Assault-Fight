@@ -8,7 +8,8 @@ public class LoadSceneDelayed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start invoke method");
+
+        //Debug.Log("Start invoke method");
         Invoke("ShowLevel1", 5);
     }
     private void ShowLevel1() {

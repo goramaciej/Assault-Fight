@@ -25,26 +25,59 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] float zRotation = 0;
 
+    [SerializeField] Vector3 currentPos;
+    [SerializeField] Vector3 currentWorldPos;
 
+    private Vector3 startPosition;
     private float xThrow, yThrow;
+    private bool controlEnabled = true;
 
-    void Start()
-    {
-        
-    }
+    protected Joystick joystick;
 
-    // Update is called once per frame
+    /// <summary>
+    /// PRIVATE
+    /// </summary>
+    private void Start() {
+        startPosition = transform.localPosition;
+
+        joystick = FindObjectOfType<Joystick>();
+    }    
+
     void Update() {
-        GetInputAxes();
-        TranslateSpaceship();
-        RotateSpaceship();
-    }
-    private void GetInputAxes() {
-        // AXES is the plural of AXIS :D
-        xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        if (controlEnabled) {
+            GetInputAxes();
+            TranslateSpaceship();
+            RotateSpaceship();
+
+            TestPosition();
+        }
     }
 
+    private void TestPosition() {
+        currentPos = transform.localPosition;
+        currentWorldPos = transform.position;
+
+        if (Input.GetKeyUp(KeyCode.T)) {
+            SendMessage("TriggerMessage");
+        }
+    }
+
+    private void GetInputAxes() {
+        //xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
+        //yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        if (joystick) {
+            xThrow = joystick.Horizontal;
+            yThrow = joystick.Vertical;
+        } else {
+            xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
+            yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        }
+
+    }
+
+    /// <summary>
+    /// Translation
+    /// </summary>
     private void TranslateSpaceship() {
         float xOffset = xThrow * xSpeed * Time.deltaTime;
         float rawXpos = Mathf.Clamp(transform.localPosition.x + xOffset, -xRange, xRange);
@@ -54,8 +87,13 @@ public class PlayerMovement : MonoBehaviour {
 
         float rawZpos = controlZFactor * xThrow;
 
-        transform.localPosition = new Vector3(rawXpos, rawYpos, transform.localPosition.z);
+        //transform.localPosition = new Vector3(rawXpos, rawYpos, transform.localPosition.z);
+        transform.localPosition = new Vector3(rawXpos, rawYpos, startPosition.z);
     }
+
+    /// <summary>
+    /// Rotation
+    /// </summary>
     private void RotateSpaceship() {
         Vector3 tf = transform.localPosition;
 
@@ -74,5 +112,12 @@ public class PlayerMovement : MonoBehaviour {
          */
 
         transform.localRotation = Quaternion.Euler(rotateX, rotateY, rotateZ);
+    }
+
+    /// <summary>
+    /// Death freezing control - received from player collision
+    /// </summary>
+    private void OnPlayerDeath() {          
+        controlEnabled = false;
     }
 }
