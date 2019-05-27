@@ -333,7 +333,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 8
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &9704446693408475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoadDelay: 1
-  explosion: {fileID: 426707319171824741}
+  health: 1000
 --- !u!1 &1692945755674982
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 2482260835987767456, guid: 9a10477b7bdaba14ba2b4d9a52f40832,
         type: 3}
       propertyPath: m_Name
-      value: Explosion
+      value: Explosion FX
       objectReference: {fileID: 0}
     - target: {fileID: 2482260835987767456, guid: 9a10477b7bdaba14ba2b4d9a52f40832,
         type: 3}
@@ -558,19 +558,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1234473006561594, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_Name
-      value: Bullets (1)
+      value: BulletsLeft
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.35
+      value: -0.69
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.05
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalRotation.x
@@ -614,6 +614,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 80817571211b49940a2c47efe9a1a3d7, type: 2}
+    - target: {fileID: 198318033176522318, guid: af881ba020e89d549b36d907c72512ff,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198318033176522318, guid: af881ba020e89d549b36d907c72512ff,
+        type: 3}
+      propertyPath: CollisionModule.minKillSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af881ba020e89d549b36d907c72512ff, type: 3}
 --- !u!4 &6969143588738363183 stripped
@@ -631,19 +641,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1234473006561594, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_Name
-      value: Bullets
+      value: BulletsRight
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.92
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.05
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4670828020327360, guid: af881ba020e89d549b36d907c72512ff, type: 3}
       propertyPath: m_LocalRotation.x
@@ -687,6 +697,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 80817571211b49940a2c47efe9a1a3d7, type: 2}
+    - target: {fileID: 198318033176522318, guid: af881ba020e89d549b36d907c72512ff,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198318033176522318, guid: af881ba020e89d549b36d907c72512ff,
+        type: 3}
+      propertyPath: CollisionModule.minKillSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af881ba020e89d549b36d907c72512ff, type: 3}
 --- !u!4 &6969143587436150637 stripped

@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] Vector3 currentPos;
     [SerializeField] Vector3 currentWorldPos;
 
+    private PlayerComponent playerComponent;
+
     private Vector3 startPosition;
     private float xThrow, yThrow;
     private bool controlEnabled = true;
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour {
         startPosition = transform.localPosition;
 
         joystick = FindObjectOfType<Joystick>();
+
+        playerComponent = gameObject.AddComponent<PlayerComponent>();
     }    
 
     void Update() {

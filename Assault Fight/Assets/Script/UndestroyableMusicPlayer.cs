@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UndestroyableMusicPlayer : MonoBehaviour
 {
@@ -13,5 +14,11 @@ public class UndestroyableMusicPlayer : MonoBehaviour
             }
         }
         DontDestroyOnLoad(gameObject);
+    }
+    private void Update() {
+        if (Input.GetKey(KeyCode.Escape)) { 
+            Debug.Log("Escape from application");
+            Application.Quit();
+        }
     }
 }
