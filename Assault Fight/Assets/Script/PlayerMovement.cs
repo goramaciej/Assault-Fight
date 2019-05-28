@@ -29,10 +29,12 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] Vector3 currentWorldPos;
 
     private Vector3 startPosition;
+    private Rigidbody rigidBody;
     private float xThrow, yThrow;
     private bool controlEnabled = true;
 
     protected Joystick joystick;
+    private PlayerCollision playerCollision;
 
     /// <summary>
     /// PRIVATE
@@ -41,26 +43,30 @@ public class PlayerMovement : MonoBehaviour {
         startPosition = transform.localPosition;
 
         joystick = FindObjectOfType<Joystick>();
-    }    
+        playerCollision = GetComponent<PlayerCollision>();
+        rigidBody = GetComponent<Rigidbody>();
+    }
 
-    void Update() {
+    void FixedUpdate() {
         if (controlEnabled) {
             GetInputAxes();
             TranslateSpaceship();
             RotateSpaceship();
 
-            TestPosition();
+            //TestPosition();
         }
     }
 
-    private void TestPosition() {
+
+
+    /*private void TestPosition() {
         currentPos = transform.localPosition;
         currentWorldPos = transform.position;
 
         if (Input.GetKeyUp(KeyCode.T)) {
             SendMessage("TriggerMessage");
         }
-    }
+    }*/
 
     private void GetInputAxes() {
         //xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -79,8 +85,18 @@ public class PlayerMovement : MonoBehaviour {
     /// Translation
     /// </summary>
     private void TranslateSpaceship() {
+        // Ask collider if there is possibility to go further in X axis
+
         float xOffset = xThrow * xSpeed * Time.deltaTime;
-        float rawXpos = Mathf.Clamp(transform.localPosition.x + xOffset, -xRange, xRange);
+        float tX = transform.localPosition.x;
+        float rawXpos = Mathf.Clamp(tX + xOffset, -xRange, xRange);
+        if(playerCollision.collisionPosition > 0) {
+            rawXpos = tX - 0.2f;
+        }
+        if (playerCollision.collisionPosition < 0) {
+            rawXpos = tX + 0.2f;
+        }
+
 
         float yOffset = yThrow * ySpeed * Time.deltaTime;
         float rawYpos = Mathf.Clamp(transform.localPosition.y + yOffset, -yRange, yRange);
@@ -103,7 +119,15 @@ public class PlayerMovement : MonoBehaviour {
 
         float rotateY = (tf.x / xRange) * (-rotateYFactor);
 
-        float rotateZ = (Mathf.Abs(tf.x) < xRange) ? controlZFactor * xThrow : 0;
+        // don't let rotate when collides on this side
+        float tempXthrow = xThrow;
+        if ((playerCollision.collisionPosition > 0) && (xThrow > 0)) {
+            tempXthrow = 0;
+        }
+        if ((playerCollision.collisionPosition < 0) && (xThrow < 0)) {
+            tempXthrow = 0;
+        }
+        float rotateZ = (Mathf.Abs(tf.x) < xRange) ? controlZFactor * tempXthrow : 0;
 
         /*used in course: 
          * pitch: rotation on x axis
@@ -114,10 +138,12 @@ public class PlayerMovement : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(rotateX, rotateY, rotateZ);
     }
 
+
     /// <summary>
     /// Death freezing control - received from player collision
     /// </summary>
     private void OnPlayerDeath() {          
         controlEnabled = false;
+        rigidBody.useGravity = true;
     }
 }

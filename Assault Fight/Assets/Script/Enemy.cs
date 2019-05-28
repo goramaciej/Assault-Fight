@@ -9,6 +9,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject explosion;
     [SerializeField] Transform xplosionParent;
 
+
+    [SerializeField] int healthPoints = 100;
+
+    private Rigidbody rb;
     private Collider boxCollider;
     private ScoreBoard scoreBoard;
 
@@ -17,6 +21,7 @@ public class Enemy : MonoBehaviour
         AddCollider();
 
         scoreBoard = FindObjectOfType<ScoreBoard>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void AddCollider() {
@@ -35,6 +40,13 @@ public class Enemy : MonoBehaviour
         
     }
     private void OnParticleCollision(GameObject other) {
+        Debug.Log("got particle collision");
+        Die();
+    }
+
+    private void Die() {
+        rb.useGravity = true;
+        rb.AddForce(new Vector3(1000f, 1000f, 1000f));
 
         // Add Points;
         scoreBoard.AddScore(scoreForDestroy);
@@ -45,6 +57,9 @@ public class Enemy : MonoBehaviour
         if (xplosionParent) {
             explodeGO.transform.parent = xplosionParent;
         }
+        Invoke("DestroyMe", 5f);
+    }
+    private void DestroyMe() {
         Destroy(gameObject);
     }
 }
