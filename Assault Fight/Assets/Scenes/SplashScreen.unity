@@ -279,7 +279,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'ASSAULT
 
-    FIGHT'
+    FIGHTER'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 107c12359a3c7ef428e11194b2e34af3, type: 2}
   m_sharedMaterial: {fileID: 8169606615706488176, guid: 107c12359a3c7ef428e11194b2e34af3,
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 611658155}
-    characterCount: 13
+    characterCount: 15
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

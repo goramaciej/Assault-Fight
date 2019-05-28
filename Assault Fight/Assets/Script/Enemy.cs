@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] int scoreForDestroy = 12;
+
     [SerializeField] GameObject explosion;
     [SerializeField] Transform xplosionParent;
 
     private Collider boxCollider;
+    private ScoreBoard scoreBoard;
 
     void Start()
     {
         AddCollider();
+
+        scoreBoard = FindObjectOfType<ScoreBoard>();
     }
 
     private void AddCollider() {
@@ -22,7 +27,6 @@ public class Enemy : MonoBehaviour
             boxCollider = gameObject.AddComponent<BoxCollider>();            
         }
         boxCollider.isTrigger = false;
-        Debug.Log("Added: "+ boxCollider);
     }
 
     // Update is called once per frame
@@ -31,6 +35,10 @@ public class Enemy : MonoBehaviour
         
     }
     private void OnParticleCollision(GameObject other) {
+
+        // Add Points;
+        scoreBoard.AddScore(scoreForDestroy);
+
         // Explosion will be destroyed by itself when particle finished
         GameObject explodeGO = Instantiate(explosion, transform.position, Quaternion.identity);
         // xplosionParent indicates where instantation should be done
