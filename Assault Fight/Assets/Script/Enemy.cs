@@ -10,11 +10,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform xplosionParent;
 
 
-    [SerializeField] int healthPoints = 100;
+    // how many hits enemy needs to die
+    [SerializeField] int hit = 3;
 
     private Rigidbody rb;
     private Collider boxCollider;
     private ScoreBoard scoreBoard;
+    private GameObject explodeGO;
 
     void Start()
     {
@@ -34,32 +36,38 @@ public class Enemy : MonoBehaviour
         boxCollider.isTrigger = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnParticleCollision(GameObject other) {
-        Debug.Log("got particle collision");
-        Die();
+        TakeDamage();
+    }
+
+    private void TakeDamage() {
+        hit--;
+        if (hit < 1) {
+            Die();
+        }
     }
 
     private void Die() {
         rb.useGravity = true;
-        rb.AddForce(new Vector3(1000f, 1000f, 1000f));
+        rb.AddForce(Vector3.down * 200f);
+        rb.AddTorque(new Vector3(0, 2000f, 0));
+
+        //rb.AddForce(new Vector3(1000f, 1000f, 1000f));
 
         // Add Points;
         scoreBoard.AddScore(scoreForDestroy);
 
         // Explosion will be destroyed by itself when particle finished
-        GameObject explodeGO = Instantiate(explosion, transform.position, Quaternion.identity);
+        explodeGO = Instantiate(explosion, transform.position, Quaternion.identity);
+        explodeGO.transform.parent = this.transform;
         // xplosionParent indicates where instantation should be done
-        if (xplosionParent) {
+        /*if (xplosionParent) {
             explodeGO.transform.parent = xplosionParent;
-        }
-        Invoke("DestroyMe", 5f);
+        }*/
+        Invoke("DestroyMe", 3f);
     }
     private void DestroyMe() {
+        Destroy(explodeGO);
         Destroy(gameObject);
     }
 }
