@@ -7,28 +7,23 @@ public class PlayerFiring : MonoBehaviour
 {
 
     [SerializeField] GameObject[] guns;
-    // Start is called before the first frame update
-    void Start()
-    {
-        guns[0].SetActive(true);
-    }
 
-    // Update is called once per frame
+    private void Start() {
+        Fire(false);
+    }
     void Update() {
-        if (CrossPlatformInputManager.GetButton("Fire")) {
-            Fire();
-        } else {
-            Fire(false);
+        //Fire(CrossPlatformInputManager.GetButton("Fire"));
+    }
+    private void Fire(bool fire) {
+        foreach (GameObject gun in guns) {
+            ParticleSystem.EmissionModule em = gun.GetComponent<ParticleSystem>().emission;
+            em.enabled = fire;
         }
     }
-    private void Fire(bool fire = true) {
-
-        foreach (GameObject gun in guns) {
-            if (fire) {
-                gun.SetActive(true);
-            } else {
-                gun.SetActive(false);
-            }
-        }
+    public void FireButtonDown() {
+        Fire(true);
+    }
+    public void FireButtonUp() {
+        Fire(false);
     }
 }

@@ -18,12 +18,25 @@ public class Enemy : MonoBehaviour
     private ScoreBoard scoreBoard;
     private GameObject explodeGO;
 
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+
     void Start()
     {
         AddCollider();
 
         scoreBoard = FindObjectOfType<ScoreBoard>();
         rb = GetComponent<Rigidbody>();
+
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+    }
+
+    public void Reset() {
+        rb.velocity = Vector3.zero;
+        transform.position = startPosition;
+        transform.rotation = startRotation;
+        gameObject.SetActive(true);
     }
 
     private void AddCollider() {
@@ -68,6 +81,7 @@ public class Enemy : MonoBehaviour
     }
     private void DestroyMe() {
         Destroy(explodeGO);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

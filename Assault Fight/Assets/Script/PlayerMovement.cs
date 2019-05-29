@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
     // Start is called before the first frame update
@@ -75,6 +76,7 @@ public class PlayerMovement : MonoBehaviour {
             xThrow = joystick.Horizontal;
             yThrow = joystick.Vertical;
         } else {
+            //Debug.Log("No Joystick move on: " + CrossPlatformInputManager.GetAxis("Vertical"));
             xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
             yThrow = CrossPlatformInputManager.GetAxis("Vertical");
         }
