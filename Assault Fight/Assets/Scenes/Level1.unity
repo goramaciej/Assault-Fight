@@ -1574,7 +1574,7 @@ PrefabInstance:
     - target: {fileID: 7235209822312459779, guid: f63ea2d720200ed40a5193dc9994750f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7235209822312459783, guid: f63ea2d720200ed40a5193dc9994750f,
         type: 3}
@@ -2625,7 +2625,6 @@ GameObject:
   - component: {fileID: 1451965857}
   - component: {fileID: 1451965856}
   - component: {fileID: 1451965855}
-  - component: {fileID: 1451965858}
   m_Layer: 0
   m_Name: Mountain Terrain
   m_TagString: Untagged
@@ -2695,18 +2694,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1451965858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451965854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff71bca95f5b1a4fa636765cec750b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1461483174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4990607877152018, guid: 6d7afa73fcb1fce4cb4b65361a29bcbd,
