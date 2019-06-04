@@ -8,31 +8,32 @@ public class LoadSceneDelayed : MonoBehaviour {
     //[SerializeField] Slider slider;
 
     private bool loadScene = false;
+    AsyncOperation async;
 
     void Start() {
         //slider.gameObject.SetActive(false);
-        //StartCoroutine(LoadNewScene("Level1"));
-
-        Invoke("SetButton", 4f);
+        StartCoroutine(LoadNewScene("Level1"));
+        //Invoke("SetButton", 4f);
     }
     void SetButton() {
         startButton.SetActive(true);
     }
 
-    /*IEnumerator LoadNewScene(string sceneName) {
+    IEnumerator LoadNewScene(string sceneName) {
         async = SceneManager.LoadSceneAsync(sceneName);
-        async.allowSceneActivation = false;
+        //async.allowSceneActivation = false;
 
         while (!async.isDone) {
             float progress = Mathf.Clamp01(async.progress / 0.9f);
-            slider.value = progress;
+            //slider.value = progress;
             yield return null;
         }
-    }*/
+        Debug.Log("Scene Loaded");
+    }
 
 
-    public void ShowLevel1() {
+    /*public void ShowLevel1() {
         //Debug.Log("It's time to show the next level");
         SceneManager.LoadScene(1);
-    }
+    }*/
 }
